@@ -8,49 +8,47 @@ end
     
 
 get '/' do
-    post_shark = {
+    @post_shark = {
         username: "sharky_j",
         avatar_url: "http://naserca.com/images/sharky_j.jpg",
         photo_url: "http://naserca.com/images/shark.jpg",
         time_ago_in_minutes: humanized_time_ago(15),
         like_count: 0,
-        commen_count: 1,
+        comment_count: 1,
         comments: [{
             username: "sharky_j",
             text: "Out for the long weekend...too embarrassed to show you all the beach bod!"
         }]
     }
     
-    post_whale = {
+    @post_whale = {
         username: "kirk_whalum",
         avatar_url: "http://naserca.com/images/kirk_whalum.jpg",
         photo_url: "http://naserca.com/images/whale.jpg",
         time_ago_in_minutes: humanized_time_ago(65),
         like_count: 0,
-        commen_count: 1,
+        comment_count: 1,
         comments: [{
             username: "kirk_whalum",
             text: "#weekendvibes"
         }]
     }
     
-      post_marlin = {
+    @post_marlin = {
         username: "marlin_peppa",
         avatar_url: "http://naserca.com/images/marlin_peppa.jpg",
         photo_url: "http://naserca.com/images/marlin.jpg",
         time_ago_in_minutes: humanized_time_ago(190),
         like_count: 0,
-        commen_count: 1,
+        comment_count: 1,
         comments: [{
             username: "marlin_peppa",
             text: "lunchtime! ;)"
         }]
     }
     
-    post_marlin[:username]
-    
-    [post_shark, post_whale, post_marlin].to_s
-
+    @posts = [@post_shark, @post_whale, @post_marlin]
+    erb (:index)
  end
  
     # if time ago is greater than one hour 
