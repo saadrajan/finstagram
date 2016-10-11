@@ -11,7 +11,7 @@ get '/' do
     erb (:index)
     
 end
- 
+
 get '/signup' do
     @user = User.new
     erb(:signup)
@@ -56,6 +56,39 @@ get '/Logout' do
      session[:user_id] = nil
      redirect to('/')
 end
+
+get '/posts/new' do
+    @post = Post.new
+    erb(:"posts/new")
+end
+
+
+
+#get '/posts/:id' do
+#    @post = Post.find(params[:id])
+#    escape_html @post.inspect
+#end
+
+get '/posts/:id' do
+    @post = Post.find(params[:id])
+    erb(:"posts/show")
+end
+
+post '/posts' do
+    photo_url = params[:photo_url]
+    
+    @post = Post.new({ photo_url: photo_url, user_id: current_user.id })
+    
+    if @post.save
+        redirect(to('/'))
+    else
+        erb(:"posts/new")
+    end
+    
+
+
+end
+
 
 
 
